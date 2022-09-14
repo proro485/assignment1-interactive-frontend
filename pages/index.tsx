@@ -1,6 +1,7 @@
 import { useQueries } from "@tanstack/react-query";
 import { NextPage } from "next";
 import { useEffect, useState } from "react";
+import Alert from "../components/Alert";
 import AuthorsList from "../components/AuthorsList";
 import BooksList from "../components/BooksList";
 import MagazinesList from "../components/MagazineList";
@@ -43,6 +44,9 @@ const Home: NextPage = () => {
         sortByTitle={sortByTitle}
         setSortByTitle={setSortByTitle}
       />
+      <div className="mt-6 flex justify-center">
+        <Alert />
+      </div>
       {!searchQuery.length && !authorsQuery.isLoading && (
         <AuthorsList authors={authorsQuery.data.data} />
       )}
