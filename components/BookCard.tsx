@@ -13,7 +13,7 @@ const BookCard = ({ title, authors, description, isbn }: Book) => {
         <div className="mt-2 space-y-1">
           <p>Authors : {authors.split(",").join(", ")}</p>
           <p>ISBN : {isbn}</p>
-          <p>Descrption : {description.split(" ").splice(1, 30).join(" ")}</p>
+          <p>Description : {description.split(" ").splice(1, 30).join(" ")}</p>
         </div>
       </div>
     </div>

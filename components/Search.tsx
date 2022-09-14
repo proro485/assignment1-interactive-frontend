@@ -21,8 +21,8 @@ const Search = ({
     <div className="mt-5 flex w-full justify-center">
       <input
         type="text"
-        className="w-1/4 rounded-l-md px-5 text-black outline-none"
-        placeholder="Search Books or Magazines"
+        className="w-1/3 rounded-l-md px-5 text-black outline-none"
+        placeholder="Search Books and Magazines"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
@@ -35,7 +35,7 @@ const Search = ({
         <option value="isbn">ISBN</option>
       </select>
       <button
-        className="btn ml-10"
+        className="btn ml-5 text-xs"
         onClick={() => setSortByTitle((val) => !val)}
       >
         Sort by Title : {sortByTitle ? "true" : "false"}
