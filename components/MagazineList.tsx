@@ -4,9 +4,14 @@ type Props = {
   magazines: Magazine[];
   type: string;
   query: string;
+  sortByTitle: boolean;
 };
 
-const MagazinesList = ({ magazines, type, query }: Props) => {
+const MagazinesList = ({ magazines, type, query, sortByTitle }: Props) => {
+  if (sortByTitle) {
+    magazines.sort((a, b) => a.title.localeCompare(b.title));
+  }
+
   return (
     <div className="my-10 mx-28">
       <div className="mb-5 text-3xl font-bold">Magazines</div>

@@ -1,6 +1,6 @@
 import { useQueries } from "@tanstack/react-query";
 import { NextPage } from "next";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AuthorsList from "../components/AuthorsList";
 import BooksList from "../components/BooksList";
 import MagazinesList from "../components/MagazineList";
@@ -9,6 +9,8 @@ import Search from "../components/Search";
 const Home: NextPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [queryType, setQueryType] = useState("email");
+
+  const [sortByTitle, setSortByTitle] = useState(false);
 
   const queries = ["authors", "books", "magazines"];
 
@@ -24,6 +26,13 @@ const Home: NextPage = () => {
     }),
   });
 
+  useEffect(() => {
+    if (!sortByTitle) {
+      booksQuery.refetch();
+      magazinesQuery.refetch();
+    }
+  }, [sortByTitle]);
+
   return (
     <div>
       <Search
@@ -31,6 +40,8 @@ const Home: NextPage = () => {
         setQuery={setSearchQuery}
         queryType={queryType}
         setQueryType={setQueryType}
+        sortByTitle={sortByTitle}
+        setSortByTitle={setSortByTitle}
       />
       {!searchQuery.length && !authorsQuery.isLoading && (
         <AuthorsList authors={authorsQuery.data.data} />
@@ -39,6 +50,7 @@ const Home: NextPage = () => {
         <BooksList
           type={queryType}
           query={searchQuery}
+          sortByTitle={sortByTitle}
           books={booksQuery.data.data}
         />
       )}
@@ -47,6 +59,7 @@ const Home: NextPage = () => {
         <MagazinesList
           type={queryType}
           query={searchQuery}
+          sortByTitle={sortByTitle}
           magazines={magazinesQuery.data.data}
         />
       )}

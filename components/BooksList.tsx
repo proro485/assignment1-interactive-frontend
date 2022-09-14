@@ -4,9 +4,14 @@ type Props = {
   books: Book[];
   type: string;
   query: string;
+  sortByTitle: boolean;
 };
 
-const BooksList = ({ books, type, query }: Props) => {
+const BooksList = ({ books, type, query, sortByTitle }: Props) => {
+  if (sortByTitle) {
+    books.sort((a, b) => a.title.localeCompare(b.title));
+  }
+
   return (
     <div className="my-10">
       <div className="mx-28 mb-5 text-3xl font-bold">Books</div>

@@ -5,9 +5,18 @@ type Props = {
   setQuery: Dispatch<SetStateAction<string>>;
   queryType: string;
   setQueryType: Dispatch<SetStateAction<string>>;
+  sortByTitle: boolean;
+  setSortByTitle: Dispatch<SetStateAction<boolean>>;
 };
 
-const Search = ({ query, setQuery, queryType, setQueryType }: Props) => {
+const Search = ({
+  query,
+  setQuery,
+  queryType,
+  setQueryType,
+  sortByTitle,
+  setSortByTitle,
+}: Props) => {
   return (
     <div className="mt-5 flex w-full justify-center">
       <input
@@ -25,6 +34,12 @@ const Search = ({ query, setQuery, queryType, setQueryType }: Props) => {
         <option value="email">Email</option>
         <option value="isbn">ISBN</option>
       </select>
+      <button
+        className="btn ml-10"
+        onClick={() => setSortByTitle((val) => !val)}
+      >
+        Sort by Title : {sortByTitle ? "true" : "false"}
+      </button>
     </div>
   );
 };
